@@ -16,7 +16,7 @@ class Client {
 
     setupClient() {
         const link = new HttpLink({
-            uri: process.env['GRAPHQL_ENDPOINT'],
+            uri: GRAPHQL_ENDPOINT,
             fetch
         });
         const authLink = setContext((_, { headers }) => {
