@@ -1,38 +1,10 @@
-# create-svelte
+# sveltekit-graphql-codegen-apollo
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Tested with Apollo 3.5.6 - that version and upgrades can break compatibility. Once we have that working then let's test any newer version which might be currently available.
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+1. `npm i -D @apollo/client@3.5.6 dotenv graphql@15.8 graphql-tag node-fetch svelte-preprocess`
+2. Rename `.env.exmple` to `.env` and add your endpoint and, for example, Hasura `x-hasura-admin-secret`
+3. Create `src/lib/utilities/apolloClient.js` and update line 26 for the right authorisation
+4. Patch the Apollo client `./patch-apollo-client.sh`
+5. Integrate the patch into the build script to run when the host builds the site: [Update the build script in the package.json](https://github.com/kasparpalgi/sveltekit-graphql-codegen-apollo/commit/32a2e2c38f1097135a31ddbef3bc4eb1942ca004)
+6. Use the Apollo client `src/routes/+page.server.js`
