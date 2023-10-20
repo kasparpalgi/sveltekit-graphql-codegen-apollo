@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # original source: https://github.com/apollographql/apollo-client/issues/8218
 
