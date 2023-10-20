@@ -7,11 +7,11 @@ import { ACCESS_TOKEN, GRAPHQL_ENDPOINT } from '$env/static/private';
 
 class Client {
     constructor() {
-        if (Client._instance) {
+        if (!Client._instance) {
+            Client._instance = this;
+            this.client = this.setupClient();
         }
-        Client._instance = this;
-
-        this.client = this.setupClient();
+        return Client._instance;
     }
 
     setupClient() {
@@ -35,3 +35,6 @@ class Client {
         return client;
     }
 }
+
+const instance = new Client();
+export const client = instance.client;
